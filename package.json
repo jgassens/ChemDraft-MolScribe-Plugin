@@ -1,0 +1,26 @@
+{
+  "name": "@chemdraft/plugin-molscribe-ocsr",
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "description": "ChemDraft structure-from-image plugin — recognizes a chemical structure in an image with the host-managed local MolScribe engine and proposes it for review before insertion.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgassens/ChemDraft-MolScribe-Plugin.git"
+  },
+  "scripts": {
+    "package": "tsx tools/plugin-package/package.ts -- . --name molscribe-ocsr",
+    "test": "vitest run",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@chemdraft/plugin-api": "file:./vendor/chemdraft-plugin-api-0.1.6.tgz"
+  },
+  "devDependencies": {
+    "@chemdraft/plugin-host": "file:./vendor/chemdraft-plugin-host-0.1.6.tgz",
+    "@types/node": "^26.1.2",
+    "tsx": "^4.23.1",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}
