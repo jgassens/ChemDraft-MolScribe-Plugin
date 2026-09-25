@@ -10,7 +10,8 @@ export interface MolScribeOcsrPluginRegistration {
 /**
  * The command: ask the host for an image, have the host's local MolScribe engine recognize that same
  * image, and queue the result as a proposal for the user to accept or reject. It never inserts
- * directly. Cancelling image acquisition is silent; every other stop explains itself in the panel.
+ * directly. Cancelling image acquisition, or the recognition itself (e.g. the engine install), is
+ * silent; every other stop explains itself in the panel.
  */
 export function createMolScribeOcsrCommandHandler(): PluginCommandHandler<
   PluginRecognitionResult | { status: "cancelled" | "unavailable" }
@@ -37,6 +38,7 @@ export function createMolScribeOcsrCommandHandler(): PluginCommandHandler<
     }
 
     const recognition = await context.recognition!.recognizeStructure(imageResult.image);
+    if (recognition.status === "cancelled") return recognition;
     if (recognition.status === "engineNotInstalled") {
       await showMessage(context, "Recognition needs the local engine. Install it in Add or Remove Plugins.");
       return recognition;

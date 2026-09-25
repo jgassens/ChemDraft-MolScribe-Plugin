@@ -154,6 +154,15 @@ describe("createMolScribeOcsrCommandHandler", () => {
     expect(showPanelReport).not.toHaveBeenCalled();
     expect(host.listProposedPatches()).toEqual([]);
   });
+
+  it("is silent when recognition itself is cancelled (e.g. the engine install)", async () => {
+    const reports: PluginPanelReport[] = [];
+    const { host } = createHost({ status: "cancelled" }, reports);
+
+    await expect(host.invokeCommand(molscribeOcsrCommandId)).resolves.toEqual({ status: "cancelled" });
+    expect(reports).toEqual([]);
+    expect(host.listProposedPatches()).toEqual([]);
+  });
 });
 
 describe("recognitionReviewWarnings", () => {
