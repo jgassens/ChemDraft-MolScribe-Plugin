@@ -8,6 +8,12 @@ review before anything is inserted.
 Recognition is done by [MolScribe](https://github.com/thomas0809/MolScribe), an
 image-to-graph model for molecular structures.
 
+> **Experimental.** MolScribe was trained on clean, computer-drawn structures.
+> It does reasonably on those, but often misreads hand-drawn or sketch-style
+> strokes, colour-filled rings, and images with grid or axis lines crossing the
+> drawing. Check every atom and bond in the review before inserting. This may
+> improve if better-matched training data or model weights become available.
+
 ## What it does
 
 **Recognition runs on this computer.** The image is never sent to a remote
